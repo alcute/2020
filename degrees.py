@@ -103,22 +103,22 @@ def shortest_path(source, target):
 
     while True:
 
-        # If frontier is empty, then no path
+        # If frontier is empty, we don´t have a solution
         if frontier.empty():
             return None
 
-        # Choose a node from the frontier
+        # Get a node from the frontier
         node = frontier.remove()
 
-        # Mark node as explored
+        # Current node as explored
         explored.add(node.state)
 
-        # Add neighbors to frontier
+        # Adding neighbors to our frontier
         for action, state in neighbors_for_person(node.state):
             if not frontier.contains_state(state) and state not in explored:
                 child = Node(state=state, parent=node, action=action)
 
-                # If child is the goal, then we have a solution
+                # If our child's state is the goal, then we have a solution
                 if child.state == target:
                     path = []
                     while child.parent is not None:
